@@ -1,3 +1,9 @@
+/*
+TO DO:
+_bonus
+_imposta valori startNumber, endNumber e minesNumber come da consegna
+*/
+
 //functions
 function isBetweenMinMax(min, max, num) {
     return  min <= num && num <= max; 
@@ -10,21 +16,19 @@ function isInArr(num, arr) {
 }
 */
 
-//lunghezza campo minato: utile per bonus
-var minedFieldLength = 5;
+//lunghezza campo minato: utile per bonus (forse)
+//var minedFieldLength = 5; 
 //numeri min e max consentiti
 var startNumber = 1;
-var endNumber = 10;
+var endNumber = 100;
 // numero scelto da utente
 var userNumber = 0;
 // array in cui vengono registrati i numeri già inseriti dall'utente;
 var prevUserNumbers = [];
 // punteggio utente: quanti numeri consentiti ha indovinato
 var score = 0;
-// campo minato
-// var minedField = [1, 2, 3, 4, 5];
 //numero mine
-var minesNumber = 5;
+var minesNumber = 16;
 // posizione mine
 var minePositions = [];
 
@@ -47,7 +51,7 @@ while(possibleAttempts > 0) {
     userNumber = parseInt(prompt("Inserisci un numero compreso tra " + startNumber + " e " + endNumber + "."));
 
     //verifica se numero utente è compreso tra 1 e 100,
-    if(isBetweenMinMax(1, 5, userNumber)) {
+    if(isBetweenMinMax(startNumber, endNumber, userNumber)) {
 
         //Verifica se numero utente === numero vietato -> perso
         if(minePositions.includes(userNumber)) {
