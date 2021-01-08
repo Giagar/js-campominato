@@ -4,36 +4,50 @@ function isBetweenMinMax(min, max, num) {
 }
 
 /*
-//da considerare al posto di inludes
+//da considerare al posto di includes
 function isInArr(num, arr) { 
     return arr.includes(num);
 }
 */
 
-//lunghezza campo minato
+//lunghezza campo minato: utile per bonus
 var minedFieldLength = 5;
+//numeri min e max consentiti
+var startNumber = 1;
+var endNumber = 10;
 // numero scelto da utente
 var userNumber = 0;
 // array in cui vengono registrati i numeri già inseriti dall'utente;
 var prevUserNumbers = [];
 // punteggio utente: quanti numeri consentiti ha indovinato
 var score = 0;
+// campo minato
+// var minedField = [1, 2, 3, 4, 5];
+//numero mine
+var minesNumber = 5;
+// posizione mine
+var minePositions = [];
 
 //creare campo minato: n numeri non uguali tra loro tra 1 e 100
-var minedField = [1, 2, 3, 4, 5];
-var minePositions = [1, 5];
+var randomNumber = 0;
+for(var i = 1; i <= minesNumber;) {
+    randomNumber = Math.floor(Math.random() * (endNumber - startNumber + 1) ) + startNumber;;
+    //controlla che numero non sia già presente in arr
+    if(!minePositions.includes(randomNumber)) {
+        minePositions.push(randomNumber);
+        i++;
+    } 
+}
 
 //tentativi fatti dall'utente (counter)
-var possibleAttempts = minedFieldLength - minePositions.length;
+var possibleAttempts = endNumber - minesNumber;
 
 while(possibleAttempts > 0) {
     //chiedere numero all'utente tra 1 e 100 e inserirlo in un arr 
-    userNumber = parseInt(prompt("Inserisci numero."));
+    userNumber = parseInt(prompt("Inserisci un numero compreso tra " + startNumber + " e " + endNumber + "."));
 
     //verifica se numero utente è compreso tra 1 e 100,
     if(isBetweenMinMax(1, 5, userNumber)) {
-        console.log("ok");
-        console.log(minePositions.includes(userNumber));
 
         //Verifica se numero utente === numero vietato -> perso
         if(minePositions.includes(userNumber)) {
@@ -62,7 +76,7 @@ while(possibleAttempts > 0) {
 
         }
     } else {
-        alert("Il numero inserito non è compreso fra 1 e 100");
+        alert("Il numero inserito non è compreso tra " + startNumber + " e " + endNumber + ".");
     }
 }
 
