@@ -1,7 +1,6 @@
 /*
 TO DO:
 _bonus
-_imposta valori startNumber, endNumber e minesNumber come da consegna
 */
 
 //functions
@@ -18,7 +17,7 @@ function isInArr(num, arr) {
 
 //lunghezza campo minato: utile per bonus (forse)
 //var minedFieldLength = 5; 
-//numeri min e max consentiti
+//numeri min e max consentitiIl 
 var startNumber = 1;
 var endNumber = 100;
 // numero scelto da utente
@@ -31,6 +30,23 @@ var score = 0;
 var minesNumber = 16;
 // posizione mine
 var minePositions = [];
+
+//----bonus
+var difficulty = parseInt(prompt("Scegli la difficoltà fra 0, 1 e 2"));
+switch(difficulty) {
+    case 0:
+        endNumber = 100;
+        break;
+    case 1:
+        endNumber = 80;
+        break;
+    case 2:
+        endNumber = 50;
+        break;
+    default: 
+        alert("Il valore inserito non è valido: solo 0, 1 e 2 sono valori accettati.");
+}
+//----
 
 //creare campo minato: n numeri non uguali tra loro tra 1 e 100
 var randomNumber = 0;
@@ -55,7 +71,7 @@ while(possibleAttempts > 0) {
 
         //Verifica se numero utente === numero vietato -> perso
         if(minePositions.includes(userNumber)) {
-            alert("Hai perso: hai fatto saltare la mina n." + userNumber + ". Il tuo puteggio: " + score + ".")
+            alert("Hai perso: hai fatto saltare la mina n." + userNumber + ". Il tuo punteggio: " + score + ".")
             break;
 
         } else { 
